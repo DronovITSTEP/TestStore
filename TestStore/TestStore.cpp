@@ -3,6 +3,7 @@
 #include "Customer.h"
 #include "WareHouse.h"
 #include "Tovar.h"
+#include "_File.h"
 
 
 enum Eployees {SELLER, STOREKEEPER, CASHIER };
@@ -10,16 +11,17 @@ enum Eployees {SELLER, STOREKEEPER, CASHIER };
 int main()
 {
 
-    Customer customer{ "Ivan", "Ivanov", "ivan@ivanov.ru", "899997777" };
+    Customer customer{ "Ivan", "Ivanov", "ivan@ivanov.ru", "899997777", 12400 };
     WareHouse stock;
-    Employee* empl = new Employee[3]{
-        new Seller{"Petr", "Petrov", "Saler", 47555},
-        new Storekeeper{"Sidr", "Sidorov", "Storekeeper", 36500},
-        new Cashier{"Elena", "Elenova", 60000}
+    Employ* empl[3];
+    empl[0] = new Seller("Petr", "Petrov", "Saler", 47555 );
+    empl[1] = new Storekeeper("Sidr", "Sidorov", "Storekeeper", 36500 );
+    empl[2] = new Cashier("Elena", "Elenova", 60000 );
     };
 
-    ClassFile classFile{ "path", "mode" };
-    Product* products = classFile.GetProducts();
+    _File file;
+    file.Open("Products.txt");
+    Product* products = file.GetProducts();
     for (int i = 0; i < 10; i++) {
         stock.AddProduct(products[i]->name, products[i]->price, products[i]->count);
     }
