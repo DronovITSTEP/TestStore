@@ -12,6 +12,7 @@ protected:
 	double payment;
 
 public:
+	//инициализация сотрудника
 	Employ(string a, string b, string c, double i) {
 		name = a;
 		lastname = b;
@@ -19,6 +20,7 @@ public:
 		payment = i;
 	}
 
-	virtual Product Action(int id) = 0;
+	//виртуальный образ основного действия класса
+	virtual Product GetProduct(Product* name) = 0;
 };
 
