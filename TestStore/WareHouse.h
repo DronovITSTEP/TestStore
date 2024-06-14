@@ -1,6 +1,8 @@
 #pragma once
 #include <iostream>
 #include <iomanip>
+#include <cstring>
+#include <ostream>
 #include "Tovar.h"
 
 using namespace std;
@@ -20,52 +22,50 @@ class WareHouse {
 public:
 	Product* GetProduct(string name, int count) {
 
-		cout << "Получить со склада товар " << name << " в количестве "
-			<< count << endl;
+		/*cout << "Получить со склада товар " << name << " в количестве "
+			<< count << endl;*/
 
 		ListProducts* getProduct = listProducts;
-		
+
 		while (getProduct != nullptr && getProduct->p->name != name) {
 			getProduct = getProduct->next;
 		}
-		
+
 		if (getProduct != delListProduct) {
 
-		if (getProduct != nullptr && getProduct->p->count >= count) {
-			//getProduct->p->count -= count;
-			
-			DelProduct(getProduct->p->name, count);
-			
-			/*if (getProduct->p->count = 0) {
-				DelListProducts(getProduct->p->name, getProduct->p->price, 0);
-			}*/
-			
-			return getProduct->p;
-		}
-		else {
-			cout << "Товара " << name << " в наличии на складе меньше, чем заявлено к получению." << endl
-				<< "Желаете получить весь товар, имеющийся в наличии? y/n => ";
-			char choice;
-			cin >> choice;
-			if(choice == 'y') {
-				if (getProduct != nullptr) {
-					count = getProduct->p->count;
-					DelProduct(getProduct->p->name, count);
-					
-					return getProduct->p;
+			if (getProduct != nullptr && getProduct->p->count >= count) {
+
+				DelProduct(getProduct->p->name, count);
+
+				return getProduct->p;
+			}
+			else {
+				cout << "Товара " << name << " в наличии на складе меньше, чем заявлено к получению." << endl
+					<< "Желаете получить весь товар, имеющийся в наличии? y/n => ";
+				char choice;
+				cin >> choice;
+				if (choice == 'y') {
+					if (getProduct != nullptr) {
+						count = getProduct->p->count;
+						DelProduct(getProduct->p->name, count);
+
+						//return getProduct->p;
+					}
+				}
+				else if (choice == 'n') {
+
+					return nullptr;
 				}
 			}
-			else if (choice == 'n') {
-
+			//return (getProduct != nullptr && getProduct->p->count != 0) ? getProduct->p : nullptr;
+		}
+		else {
+			if (getProduct != nullptr) {
+				//cout << "Товар " << getProduct->p->name << " уже отсутствует в наличии." << endl;
 				return nullptr;
 			}
 		}
-		//return (getProduct != nullptr && getProduct->p->count != 0) ? getProduct->p : nullptr;
-		}
-		else {
-			cout << "Товар " << getProduct->p->name << " уже отсутствует в наличии." << endl;
-		}
-		
+
 	}
 
 	//// продукт на складе закончился, добавляем в список отсутствующих
@@ -74,7 +74,7 @@ public:
 	//	delListProduct->p = new Product(name, price, count);
 	//	delListProduct->next = nullptr;
 	//}
-	
+
 	void AddProduct(string name, double price, int count) {
 		// Ищем товар с указанным именем в списке
 		ListProducts* current = listProducts;
@@ -88,14 +88,13 @@ public:
 		if (current != nullptr) {
 			// Товар с указанным именем уже существует, увеличиваем количество
 			current->p->count += count;
-			cout << "Количество товара " << current->p->name << " увеличено на " << count << " штук." << endl;
+			//cout << "Количество товара " << current->p->name << " увеличено на " << count << " штук." << endl;
 		}
 		else {
 			// Товар с указанным именем не найден, добавляем новый товар
 			ListProducts* newProduct = new ListProducts;
 			newProduct->p = new Product(name, price, count);
 			newProduct->next = nullptr;
-			//listProducts = newProduct; 
 
 			if (prev != nullptr) {
 				// Вставляем новый товар после найденного товара
@@ -106,7 +105,7 @@ public:
 				listProducts = newProduct;
 			}
 
-			cout << "Товар " << name << " добавлен в список." << endl;
+			//cout << "Товар " << name << " добавлен в список." << endl;
 		}
 	}
 	ListProducts* DelProduct(string name, int count) {
@@ -114,11 +113,11 @@ public:
 		while (current != nullptr && current->p->name != name) {
 			current = current->next;
 		}
-		if (current != nullptr || current != delListProduct) {
+		if (current != nullptr && current != delListProduct) {
 			// Найден товар с указанным именем, уменьшаем количество
 			if (current->p->count > count) {
 				current->p->count -= count;
-				cout << "Количество товара " << current->p->name << " уменьшено на "
+				//cout << "Количество товара " << current->p->name << " уменьшено на "
 					<< count << endl;
 			}
 			else if (current->p->count == count) {
@@ -128,16 +127,17 @@ public:
 				return delListProduct;
 			}
 			else {
-					cout << "Товар " << current->p->name << " уже отсутствует в наличии." << endl;
-					delListProduct = current;
-					return delListProduct;
-				}
+				cout << "Товар " << current->p->name << " уже отсутствует в наличии." << endl;
+				delListProduct = current;
+				return delListProduct;
+			}
 		}
 		else {
 			cout << "Товар с именем " << name << " не найден." << endl;
+			return nullptr;
 		}
 	}
-	void PrintProduct() {
+	/*void PrintProduct() {
 		ListProducts* current = listProducts;
 		while (current != nullptr && current != delListProduct) {
 			cout << "Товар: " << current->p->name << " "
@@ -156,8 +156,11 @@ public:
 			}
 
 		}
+	}*/
+
+	void PrintProduct(ostream& os) const {
+		os << "Product: " << name << ", Price: " << price << endl;
 	}
 
-	
 };
 
