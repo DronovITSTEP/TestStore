@@ -1,0 +1,75 @@
+/*void AddProduct(string name, float price, int count) {
+
+	listProducts* newNode = new listProducts;
+	newNode->p = new Product;
+	newNode->p->name = name;
+	newNode->p->price = price;
+	newNode->p->count = count;
+	newNode->next = nullptr;
+
+	if (addListProducts == nullptr) {
+		addListProducts = newNode;
+	}
+	else {
+		listProducts* current = addListProducts;
+		while (current->next != nullptr) {
+			current = current->next;
+		}
+		current->next = newNode;
+	}
+}*/
+
+// Либо добавляем новый товар в список, 
+// либо увеличиваем количество уже существующего товара
+//void AddProduct(string name, double price, int count) {
+//	listProducts* current = addListProducts;
+//	while (current != nullptr && current->p->name != name) {
+//		current = current->next;
+//	}
+//	if (current != nullptr) {
+//		// Товар с указанным именем уже существует, увеличиваем количество
+//		current->p->count += count;
+//		cout << "Количество товара " << current->p->name << " увеличено на " << count << " штук." << endl;
+//	}
+//	else {
+//		// Товар с указанным именем не найден, добавляем новый товар
+//		listProducts* newProduct = new listProducts;
+//		newProduct->p = new Product;
+//		newProduct->p->name = name;
+//		newProduct->p->price = price;
+//		newProduct->p->count = count;
+//		newProduct->next = addListProducts;
+//		addListProducts = newProduct;
+//		cout << "Товар " << name << " добавлен в список." << endl;
+//	}
+//}
+
+
+// Удаление вида тоара поностью, вне зависимости от количества
+//void DelProduct(string name) {
+//	if (delListProducts == nullptr) {
+//		//список пуст
+//		delListProducts = new listProducts;
+//		delListProducts->p = new Product;
+//		delListProducts->p->name = name;
+//		delListProducts->next = nullptr;
+//	}
+//	else {
+//		listProducts* current = addListProducts;
+//		listProducts* prev = nullptr;
+//		while (current != nullptr && current->p->name != name) {
+//			prev = current;
+//			current = current->next;
+//		}
+//		if (current != nullptr) {
+//			if (prev == nullptr) {
+//				addListProducts = current->next;
+//			}
+//			else {
+//				prev->next = current->next;
+//			}
+//			delete current->p;
+//			delete current;
+//		}
+//	}
+//}

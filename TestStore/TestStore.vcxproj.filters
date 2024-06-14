@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Исходные файлы">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Файлы заголовков">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Файлы ресурсов">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Файлы заголовков\Struct">
+      <UniqueIdentifier>{4a8b1db9-9c56-4144-b296-2c30164123ea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\Customer">
+      <UniqueIdentifier>{fdbd50be-6955-4847-ba0c-0c2f99347dca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\Employee">
+      <UniqueIdentifier>{ab7eb187-7c57-4625-b220-406628704ab9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\Stock">
+      <UniqueIdentifier>{4900fbb9-26af-4f3f-a076-4450d1270020}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="TestStore.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\Tovar.h">
+      <Filter>Файлы заголовков\Struct</Filter>
+    </ClInclude>
+    <ClInclude Include="Employ.h">
+      <Filter>Файлы заголовков\Employee</Filter>
+    </ClInclude>
+    <ClInclude Include="WareHouse.h">
+      <Filter>Файлы заголовков\Stock</Filter>
+    </ClInclude>
+    <ClInclude Include="Customer.h">
+      <Filter>Файлы заголовков\Customer</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
