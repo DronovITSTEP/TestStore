@@ -6,6 +6,7 @@
 #include "_File.h"
 
 
+
 enum Eployees {SELLER, STOREKEEPER, CASHIER };
 
 int main()

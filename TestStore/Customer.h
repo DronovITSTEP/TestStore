@@ -1,6 +1,11 @@
 #pragma once
 #include <iostream>
+#include <sstream>
+#include "Tovar.h"
+#include "Tovar.h"
+=========
 #include "\\Teacher\общая папка\БВ311\Tovar.h"
+>>>>>>>>> Temporary merge branch 2
 
 using namespace std;
 
@@ -23,28 +28,28 @@ enum DiscountType {
 
 class Customer
 {
-public:
+private:
 	Basket* head;
 	Basket* tail;
 	int last_idBasket;
 	int idCount;
-	string name;
-	string surname;
-	string email;
-	string phone;
+	float balance;
+	float all_price_order;
 	float discount;
 	float all_order = 0; // сумма заказов покупателя (нужно для расчета скидки)
+	
+public:	
+	float balance; //кол-во денег
 
-	
-	
-	
+	float all_price_order = 0; // сумма заказов покупателя (нужно для расчета скидки)
+
 	// Конструктор 
 	Customer(string name, string surname, string email, string phone, float balance) :
 		name{ name },
 		surname{ surname },
 		email{ email },
 		phone{ phone },
-		balance(balance)
+		balance{ balance }
 	{
 		discount = No_diskont;
 		all_price_order = 0;
@@ -53,45 +58,35 @@ public:
 		last_idBasket = 0;
 		Basket* ptr_basket = new Basket;
 		//ptr_basket->quantity = 0;
-		//ptr_basket->totalprice = 0;
-		ptr_basket->product = nullptr;
-		ptr_basket->idBasket = last_idBasket;
-	}
 
-	/*
-	// Конструктор копирования
-	Customer(const Customer& other):
-		name{ other.name },
-		surname{ other.surname },
-		email{ other.email },
-		phone{ other.phone },
-		discount{ other.discount},
-		balance{ other.balance},
-		all_price_order{ other.all_price_order}
-
-	{
-	}
-	*/
-	//Конструктор переноса
-	/*Customer(const Customer&& other) {
-		name = other.name;
-		surname = other.surname;
-		email=other.email;
-		phone = other.phone;
-		discount = other.discount;
-		other.name = " ";
-		surname{ other.surname },
-		email{ other.email },
+	
 		phone{ other.phone },
 		discount{ other.discount }
 	}
+	*/
+
+
+	
+	*/
+
+
+	~Customer();
+
+
+
 
 	// Геттеры
 	string getName() const { return name; }
 	string getSurname() const { return surname; }
 	string getEmail() const { return email; }
 	string getPhone() const { return phone; }
-	
+<<<<<<<<< Temporary merge branch 1
+	DiscountType GetDiscount() { return discount; }
+=========
+>>>>>>>>> Temporary merge branch 2
+
+	float getBalance() const { return balance; }
+
 	// Сеттеры
 	void setName(string newName) { name = newName; }
 	void setSurname(string surname) { name = surname; }
@@ -212,7 +207,7 @@ bool Customer::AddToBasket(Product* product_obj) {
 
 		while (temp != nullptr) {
 			if (temp->product->name == product_obj->name) {
-				temp->product->quantity += product_obj->quantity;
+				temp->product->count += product_obj->count;
 				return 1;
 			}
 			temp = temp->next;
@@ -332,7 +327,7 @@ string Customer::displayBasket() {
 	}
 	//	ss <<"\033[1;33mBusket total:\033[0m" << "\033[1;31m" << AllBasket_Price(total_dis) << "\033[0m" << "  " 
 	//		 << "\033[1;33mwith diskount:\033[0m" << "\033[1;31m" << total_dis << "\033[0m" << endl;
-	//	s_totalBasket+=" " + ss.str()
+	//s_totalBasket += " " + ss.str();
 }
 
 Basket* Customer::searchIdBasket(int id_Basket) {
@@ -388,5 +383,6 @@ Basket* Customer::GetBusket() {
 // если есть деньги, то передаем полную сумму, если нет, то доступное кол-во средств
 float Customer::GetCash(float cash) {
 	return (cash > balance) ? balance : cash;
+}
 
 

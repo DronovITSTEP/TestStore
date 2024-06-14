@@ -10,7 +10,8 @@ public:
 	string path = "";
 	string name = "";
 
-	void Open(string path, string namefile, char* type_of_access, Product*& products);
+	bool Open(string namefile, string path);
 	void Save(string path, string namefile, char* type_of_access, Product* products);
+	Product* GetProducts();
 };
 
