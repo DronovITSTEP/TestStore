@@ -29,6 +29,8 @@ public:
 	Basket* tail;
 	int last_idBasket;
 	int idCount;
+	float balance;
+	float all_price_order;
 	string name;
 	string surname;
 	string email;
@@ -73,8 +75,9 @@ public:
 	{
 	}
 	*/
+	/*
 	//Конструктор переноса
-	/*Customer(const Customer&& other) {
+	Customer(const Customer&& other) {
 		name = other.name;
 		surname = other.surname;
 		email=other.email;
@@ -86,7 +89,7 @@ public:
 		phone{ other.phone },
 		discount{ other.discount }
 	}
-
+	*/
 	// Геттеры
 	string getName() const { return name; }
 	string getSurname() const { return surname; }
@@ -213,7 +216,7 @@ bool Customer::AddToBasket(Product* product_obj) {
 
 		while (temp != nullptr) {
 			if (temp->product->name == product_obj->name) {
-				temp->product->quantity += product_obj->quantity;
+				temp->product->count += product_obj->count;
 				return 1;
 			}
 			temp = temp->next;
@@ -333,7 +336,7 @@ string Customer::displayBasket() {
 	}
 	//	ss <<"\033[1;33mBusket total:\033[0m" << "\033[1;31m" << AllBasket_Price(total_dis) << "\033[0m" << "  " 
 	//		 << "\033[1;33mwith diskount:\033[0m" << "\033[1;31m" << total_dis << "\033[0m" << endl;
-	//	s_totalBasket+=" " + ss.str()
+	//s_totalBasket += " " + ss.str();
 }
 
 Basket* Customer::searchIdBasket(int id_Basket) {
@@ -389,5 +392,6 @@ Basket* Customer::GetBusket() {
 // если есть деньги, то передаем полную сумму, если нет, то доступное кол-во средств
 float Customer::GetCash(float cash) {
 	return (cash > balance) ? balance : cash;
+}
 
 
