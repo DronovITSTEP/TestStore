@@ -1,7 +1,7 @@
 #pragma once
 #include <iostream>
 #include <sstream>
-#include "\\Teacher\общая папка\БВ311\Tovar.h"
+#include "Tovar.h"
 
 using namespace std;
 
@@ -121,6 +121,7 @@ public:
 	string getSurname() const { return surname; }
 	string getEmail() const { return email; }
 	string getPhone() const { return phone; }
+	DiscountType GetDiscount() { return discount; }
 
 	float getBalance() const { return balance; }
 
