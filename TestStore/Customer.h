@@ -37,8 +37,6 @@ private:
 	string phone;
 	float discount;
 	float all_order = 0; // сумма заказов покупателя (нужно для расчета скидки)
-
-	
 	
 public:	
 	// Конструктор 
