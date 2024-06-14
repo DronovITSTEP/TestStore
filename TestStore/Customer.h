@@ -1,29 +1,9 @@
 #pragma once
 #include <iostream>
-#include <sstream>
 #include "\\Teacher\общая папка\БВ311\Tovar.h"
 
 using namespace std;
 
-/*
-struct Product {
-	static int id;
-	string name = "";
-	float price = 0;
-	int quantity = 0;
-	int lastid = 0;
-	Product() {
-		id++;
-		lastid = id;
-	}
-	Product(string name, float price) : name{ name }, price{ price } {
-		//	id++;
-		//  lastid = id;
-	}
-	Product* GetProduct(int id_product);
-	Product* GetProduct(string name_product);
-};
-*/
 
 // скидка от 0% до 100%
 	// если общая сумма заказов до 1000 ---> скидка 2%
@@ -52,11 +32,12 @@ public:
 	string surname;
 	string email;
 	string phone;
-	DiscountType discount;
-	float balance; //кол-во денег
+	float discount;
+	float all_order = 0; // сумма заказов покупателя (нужно для расчета скидки)
 
-	float all_price_order = 0; // сумма заказов покупателя (нужно для расчета скидки)
-
+	
+	
+	
 	// Конструктор 
 	Customer(string name, string surname, string email, string phone, float balance) :
 		name{ name },
@@ -104,26 +85,13 @@ public:
 		phone{ other.phone },
 		discount{ other.discount }
 	}
-	*/
-
-	/*
-	//оператор присваивания
-	*/
-
-
-	~Customer();
-
-
-
 
 	// Геттеры
 	string getName() const { return name; }
 	string getSurname() const { return surname; }
 	string getEmail() const { return email; }
 	string getPhone() const { return phone; }
-
-	float getBalance() const { return balance; }
-
+	
 	// Сеттеры
 	void setName(string newName) { name = newName; }
 	void setSurname(string surname) { name = surname; }
