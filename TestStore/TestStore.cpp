@@ -5,6 +5,7 @@
 #include "Tovar.h"
 
 
+
 enum Eployees {SELLER, STOREKEEPER, CASHIER };
 
 int main()
@@ -18,7 +19,7 @@ int main()
         new Cashier{"Elena", "Elenova", 60000}
     };
 
-    ClassFile classFile{ "path", "mode" };
+    _File file;
     Product* products = classFile.GetProducts();
     for (int i = 0; i < 10; i++) {
         stock.AddProduct(products[i]->name, products[i]->price, products[i]->count);

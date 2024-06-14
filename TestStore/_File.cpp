@@ -3,15 +3,13 @@
 
 void _File::Open(string path, string namefile, char* type_of_access, Product*& products) {
 	FILE* inputfile;
-	Product* p = new Product[30];
-
-
+	
 	if (!fopen_s(&inputfile, (path + namefile).c_str(), type_of_access)) {
 		int i = 1;
 		while (!feof(inputfile)) {
 			fscanf_s(inputfile, "%s", products[i].name, sizeof(products[i].name));
 			fscanf_s(inputfile, "%f", &products[i].price, sizeof(products[i].price));
-			fscanf_s(inputfile, "%u", &products[i].quantity, sizeof(products[i].quantity));
+			fscanf_s(inputfile, "%u", &products[i].count, sizeof(products[i].count));
 			p[i].id = i;
 			i++;
 		}
@@ -26,7 +24,7 @@ void _File::Save(string path, string namefile, char* type_of_access, Product* pr
 
 	if (outfile) {
 		for (int i = 0; i < products->id; i++) {
-			fprintf(outfile, "%s %f %d\n", products[i].name.c_str(), products[i].price, products[i].quantity);
+			fprintf(outfile, "%s %f %d\n", products[i].name.c_str(), products[i].price, products[i].count);
 		}
 
 		fclose(outfile);
