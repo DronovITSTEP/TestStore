@@ -12,7 +12,7 @@ public:
 
 	Storekeeper(string name, string lastname, string post, double payment) : Employ(name, lastname, post, payment) {};
 	//Обращаение к складу на наличие товара
-	Product GetProduct(string name, int num) {
+	Product* GetProduct(string name, int num) {
 		return store.GetProduct(name, num);
 	}
 
