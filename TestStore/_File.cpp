@@ -3,7 +3,7 @@
 
 Product* products = new Product[30];
 
-bool _File::Open(string namefile, string path="/") {
+bool _File::Open(string namefile, string path="") {
 	FILE* inputfile;
 	if (!fopen_s(&inputfile, (path + namefile).c_str(), "r")) {
 		int i = 1;
@@ -20,7 +20,7 @@ bool _File::Open(string namefile, string path="/") {
 	return false;
 }
 
-void _File::Save(string path, string namefile, char* type_of_access, Product* products) {
+bool _File::Save(string path, string namefile, char* type_of_access, Product* products) {
 	FILE* outfile;
 	fopen_s(&outfile, (path + namefile).c_str(), type_of_access);
 

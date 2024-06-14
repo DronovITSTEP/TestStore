@@ -6,12 +6,12 @@ using namespace std;
 
 class _File
 {
-public:
+private:
 	string path = "";
 	string name = "";
-
-	bool Open(string namefile, string path);
-	void Save(string path, string namefile, char* type_of_access, Product* products);
+public:
+	bool Open(string namefile, string path="/");
+	bool Save(string path, string namefile, char* type_of_access, Product* products);
 	Product* GetProducts();
 };
 
