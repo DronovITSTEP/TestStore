@@ -30,6 +30,9 @@
     <ClCompile Include="TestStore.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="_File.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Tovar.h">
@@ -43,6 +46,9 @@
     </ClInclude>
     <ClInclude Include="Customer.h">
       <Filter>Файлы заголовков\Customer</Filter>
+    </ClInclude>
+    <ClInclude Include="_File.h">
+      <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
