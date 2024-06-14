@@ -13,11 +13,11 @@ protected:
 
 public:
 	//инициализация сотрудника
-	Employ(string a, string b, string c, double i) {
-		name = a;
-		lastname = b;
-		post = c;
-		payment = i;
+	Employ(string name, string lastname, string post, double payment) {
+		name = name;
+		lastname = lastname;
+		post = post;
+		payment = payment;
 	}
 
 	//виртуальный образ основного действия класса
