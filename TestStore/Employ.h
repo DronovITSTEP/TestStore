@@ -21,6 +21,6 @@ public:
 	}
 
 	//виртуальный образ основного действия класса
-	virtual Product GetProduct(Product* name) = 0;
+	virtual Product GetProduct(string name, int num) = 0;
 };
 

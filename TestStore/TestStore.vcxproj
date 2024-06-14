@@ -127,9 +127,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Cashier.cpp" />
-    <ClCompile Include="Seller.cpp" />
-    <ClCompile Include="Storekeeper.cpp" />
     <ClCompile Include="TestStore.cpp" />
     <ClCompile Include="_File.cpp" />
   </ItemGroup>
