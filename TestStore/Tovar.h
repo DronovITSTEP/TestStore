@@ -18,5 +18,4 @@ struct Basket {
 public: Basket* next;
 	  int idBasket;
 	  Product* product;
-	  unsigned int quantity;
 };

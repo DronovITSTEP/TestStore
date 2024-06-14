@@ -24,7 +24,7 @@ enum DiscountType {
 
 class Customer
 {
-public:
+private:
 	Basket* head;
 	Basket* tail;
 	int last_idBasket;
@@ -40,14 +40,14 @@ public:
 
 	
 	
-	
+public:	
 	// Конструктор 
 	Customer(string name, string surname, string email, string phone, float balance) :
 		name{ name },
 		surname{ surname },
 		email{ email },
 		phone{ phone },
-		balance(balance)
+		balance{ balance }
 	{
 		discount = No_diskont;
 		all_price_order = 0;
@@ -61,40 +61,13 @@ public:
 		ptr_basket->idBasket = last_idBasket;
 	}
 
-	/*
-	// Конструктор копирования
-	Customer(const Customer& other):
-		name{ other.name },
-		surname{ other.surname },
-		email{ other.email },
-		phone{ other.phone },
-		discount{ other.discount},
-		balance{ other.balance},
-		all_price_order{ other.all_price_order}
-
-	{
-	}
-	*/
-	/*
-	//Конструктор переноса
-	Customer(const Customer&& other) {
-		name = other.name;
-		surname = other.surname;
-		email=other.email;
-		phone = other.phone;
-		discount = other.discount;
-		other.name = " ";
-		surname{ other.surname },
-		email{ other.email },
-		phone{ other.phone },
-		discount{ other.discount }
-	}
-	*/
+	
 	// Геттеры
 	string getName() const { return name; }
 	string getSurname() const { return surname; }
 	string getEmail() const { return email; }
 	string getPhone() const { return phone; }
+
 	
 	// Сеттеры
 	void setName(string newName) { name = newName; }
