@@ -6,7 +6,7 @@ using namespace std;
 
 class Seller : public Employ
 {
-	Storekeeper storekeeper{ "a", "b", "c", 1 };
+	Storekeeper storekeeper{ "Petr", "Akimov", "storekeeper", 25500 };
 public:
 	Seller(string name, string lastname, string post, double payment) : Employ(name, lastname, post, payment) {}
 	//Обращение к методу класса "Storekeeper"

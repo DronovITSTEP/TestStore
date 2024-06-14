@@ -1,5 +1,6 @@
 #pragma once
 #include"Employ.h"
+#include"WareHouse.h"
 #include <iostream>
 
 using namespace std;
