@@ -1,7 +1,6 @@
 #pragma once
 #include<iostream>
 #include "Tovar.h"
-using namespace std;
 
 class Employ
 {
@@ -14,10 +13,10 @@ protected:
 public:
 	//инициализация сотрудника
 	Employ(string name, string lastname, string post, double payment) {
-		name = name;
-		lastname = lastname;
-		post = post;
-		payment = payment;
+		this->name = name;
+		this->lastname = lastname;
+		this->post = post;
+		this->payment = payment;
 	}
 
 	//виртуальный образ основного действия класса
