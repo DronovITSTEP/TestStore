@@ -1,6 +1,6 @@
 #pragma once
 #include <iostream>
-#include "\\Teacher\общая папка\БВ311\Tovar.h"
+#include "Tovar.h"
 
 using namespace std;
 
