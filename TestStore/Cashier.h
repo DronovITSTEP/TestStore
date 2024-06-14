@@ -1,0 +1,31 @@
+#pragma once
+#include"Tovar.h"
+#include"Employ.h"
+#include<iostream>
+
+using namespace std;
+
+class Cashier : public Employ
+{
+
+	float TotalPrice = 0;
+public:
+	Cashier(string name, string lastname, string post, double payment) : Employ(name, lastname, post, payment) {}
+	//подсчет общей стоимости всех вещей в корзине
+	float GetToatalPrice(Basket* basket, float discount) {
+		while (basket != nullptr) {
+			
+			TotalPrice += (basket->product->price * basket->product->quantity); //итоговая цена
+			basket = basket->next;
+		}
+		return TotalPrice * (1 - discount / 100);
+	}
+	//проверка правильный расчет со стороны покупателя
+	bool Pay(float sum) {
+		if (sum == TotalPrice) {
+			return true;
+		}
+		return false;
+	}
+};
+
