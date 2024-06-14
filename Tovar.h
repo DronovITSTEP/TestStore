@@ -8,10 +8,7 @@ struct Product {
 	string name;
 	float price;
 	int count = 0;
-	Product(string name, float price, int count) : name{ name }, price{ price }, count{count} {
-		id++;
-	}
-	Product() : name(""), price(0.0f), count(0) {}
+	
 };
 //int Product::id = 0;
 
