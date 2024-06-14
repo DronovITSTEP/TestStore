@@ -127,13 +127,19 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Cashier.cpp" />
+    <ClCompile Include="Seller.cpp" />
+    <ClCompile Include="Storekeeper.cpp" />
     <ClCompile Include="TestStore.cpp" />
     <ClCompile Include="_File.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Tovar.h" />
+    <ClInclude Include="Cashier.h" />
     <ClInclude Include="Customer.h" />
     <ClInclude Include="Employ.h" />
+    <ClInclude Include="Seller.h" />
+    <ClInclude Include="Storekeeper.h" />
     <ClInclude Include="WareHouse.h" />
     <ClInclude Include="_File.h" />
   </ItemGroup>
