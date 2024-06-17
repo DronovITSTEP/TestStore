@@ -1,22 +1,28 @@
 #include <iostream>
+#include <fstream>
+#include <string>
+#include <sstream>
 #include "_File.h"
 
 Product* products = new Product[30];
 
-bool _File::Open(string namefile, string path="") {
-	FILE* inputfile;
-	if (!fopen_s(&inputfile, (path + namefile).c_str(), "r")) {
-		int i = 1;
-		while (!feof(inputfile)) {
-			fscanf_s(inputfile, "%s", products[i].name, sizeof(products[i].name));
-			fscanf_s(inputfile, "%f", &products[i].price, sizeof(products[i].price));
-			fscanf_s(inputfile, "%u", &products[i].count, sizeof(products[i].count));
-			products[i].id = i;
+bool _File::Open(string namefile, string path) {
+	std::ifstream file(path + namefile);
+	if (file.is_open()) {
+		int i = 0;
+		string line;
+		while (std::getline(file, line)) {
+			istringstream iss(line);
+			iss >> products[i].name
+				>> products[i].price
+				>> products[i].count;
 			i++;
 		}
-		fclose(inputfile);
+		file.close();
 		return true;
 	}
+	else
+		cout << "no file";
 	return false;
 }
 
@@ -31,6 +37,7 @@ bool _File::Save(string path, string namefile, char* type_of_access, Product* pr
 
 		fclose(outfile);
 	}
+	return true;
 }
 
 Product* _File::GetProducts() {

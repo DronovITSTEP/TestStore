@@ -53,7 +53,7 @@ public:
 		tail = nullptr;
 		last_idBasket = 0;
 		Basket* ptr_basket = new Basket;
-		//ptr_basket->quantity = 0;
+		//ptr_basket->count = 0;
 		//ptr_basket->totalprice = 0;
 		ptr_basket->product = nullptr;
 		ptr_basket->idBasket = last_idBasket;
@@ -104,7 +104,7 @@ public:
 	/// Редактирование выбранной позиции в корзине
 	/// </summary>
 	/// <param name="index"></param>
-	bool EditBasket(int idBasket, Product*, int quantity);
+	bool EditBasket(int idBasket, Product*, int count);
 
 	/// <summary>
 	/// Удаление позиции из корзины, возвращает 0 - если не удалось удалить(позиция не найдена); 1 - произошло удаление
@@ -160,6 +160,7 @@ public:
 	/// <param name="cash"></param>
 	/// <returns></returns>
 	float GetCash(float cash);
+	~Customer();
 };
 
 
@@ -203,8 +204,8 @@ bool Customer::AddToBasket(Product* product_obj) {
 
 	ptr_basket->idBasket = last_idBasket;
 	ptr_basket->product = product_obj;
-	//ptr_basket->quantity = quantity;
-	//ptr_basket->totalprice = ptr_basket->product->price * ptr_basket->quantity;
+	//ptr_basket->count = count;
+	//ptr_basket->totalprice = ptr_basket->product->price * ptr_basket->count;
 	last_idBasket++;
 	return 1;
 
@@ -217,8 +218,8 @@ float Customer::AllBasket_Price(float& total_dis) {
 	Basket* temp = head;
 
 	while (temp != nullptr) {
-		//total += temp->product->price * temp->quantity; // без учета скидки
-		//total_dis += temp->product->price * temp->quantity * ((100-(this->discount)) / 100.0); // с учетом скидки;
+		//total += temp->product->price * temp->count; // без учета скидки
+		//total_dis += temp->product->price * temp->count * ((100-(this->discount)) / 100.0); // с учетом скидки;
 		temp = temp->next;
 	}
 
@@ -226,13 +227,13 @@ float Customer::AllBasket_Price(float& total_dis) {
 }
 
 // Редактирование позиции в корзине по idBasket 
-bool Customer::EditBasket(int idBasket, Product* product_obj, int quantity) {
+bool Customer::EditBasket(int idBasket, Product* product_obj, int count) {
 	Basket* temp = head;
 	while (temp != nullptr) {
 		if (temp->idBasket == idBasket) {
 			temp->product = product_obj;
-			//temp->quantity = quantity;
-			//temp->totalprice = product_obj->price * quantity;
+			//temp->count = count;
+			//temp->totalprice = product_obj->price * count;
 			return 1;
 		}
 		temp = temp->next;
@@ -288,8 +289,8 @@ string Customer::displayBasketNode(Basket* dispNode) {
 		ss << "\033[0m" << "BasketId: " << "\033[1;31m" << dispNode->idBasket
 			<< "\033[0m" << "; name product: " << "\033[1;31m" << dispNode->product->name
 			<< "\033[0m" << "; price :" << "\033[1;31m" << dispNode->product->price
-			//		<< "\033[0m" << "; quantity: " << "\033[1;31m" << dispNode->quantity 
-			<< "\033[0m" << "; quantity: " << "\033[1;31m" << dispNode->product->quantity
+			//		<< "\033[0m" << "; count: " << "\033[1;31m" << dispNode->count 
+			<< "\033[0m" << "; count: " << "\033[1;31m" << dispNode->product->count
 			//		<< "\033[0m" << "; total price: " << "\033[1;31m" << dispNode->totalprice 
 			<< "\033[0m" << endl;
 		return ss.str();
@@ -310,6 +311,7 @@ string Customer::displayBasket() {
 	//	ss <<"\033[1;33mBusket total:\033[0m" << "\033[1;31m" << AllBasket_Price(total_dis) << "\033[0m" << "  " 
 	//		 << "\033[1;33mwith diskount:\033[0m" << "\033[1;31m" << total_dis << "\033[0m" << endl;
 	//s_totalBasket += " " + ss.str();
+	return "";
 }
 
 Basket* Customer::searchIdBasket(int id_Basket) {
@@ -332,7 +334,7 @@ bool Customer::Byu() {
 	//			 передаем выбранные продукты продавцу
 	//			/*
 	//			obj->product->name;
-	//			obj->quantity
+	//			obj->count
 	//			*/
 	//
 	//			obj = obj->next;

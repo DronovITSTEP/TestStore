@@ -15,7 +15,7 @@ public:
 	float GetToatalPrice(Basket* basket, float discount) {
 		while (basket != nullptr) {
 			
-			TotalPrice += (basket->product->price * basket->product->quantity); //итоговая цена
+			TotalPrice += (basket->product->price * basket->product->count); //итоговая цена
 			basket = basket->next;
 		}
 		return TotalPrice * (1 - discount / 100);
@@ -26,6 +26,9 @@ public:
 			return true;
 		}
 		return false;
+	}
+	Product* GetProduct(string name, int count) {
+		return nullptr;
 	}
 };
 

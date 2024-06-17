@@ -1,0 +1,9 @@
+Milk 100 1000
+Apples 80 1000
+Meat 200 1000
+Bread 50 1000
+Butter 250 1000
+Carrots 5 1000 
+Chicken 300 1000
+Potato 15 1000
+Orange 300 1000

@@ -10,7 +10,7 @@ class Seller : public Employ
 public:
 	Seller(string name, string lastname, string post, double payment) : Employ(name, lastname, post, payment) {}
 	//Обращение к методу класса "Storekeeper"
-	Product GetProduct(string name, int num) {
+	Product* GetProduct(string name, int num) {
 		return storekeeper.GetProduct(name, num);
 	}
 };
