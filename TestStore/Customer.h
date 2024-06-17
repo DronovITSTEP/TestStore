@@ -66,6 +66,8 @@ public:
 	string getEmail() const { return email; }
 	string getPhone() const { return phone; }
 
+	float getDiscount() { return discount; }
+
 	
 	// Сеттеры
 	void setName(string newName) { name = newName; }
