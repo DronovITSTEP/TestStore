@@ -2,10 +2,6 @@
 #include <iostream>
 #include <sstream>
 #include "Tovar.h"
-#include "Tovar.h"
-=========
-#include "\\Teacher\общая папка\БВ311\Tovar.h"
->>>>>>>>> Temporary merge branch 2
 
 using namespace std;
 
@@ -35,14 +31,14 @@ private:
 	int idCount;
 	float balance;
 	float all_price_order;
+	string name;
+	string surname;
+	string email;
+	string phone;
 	float discount;
 	float all_order = 0; // сумма заказов покупателя (нужно для расчета скидки)
 	
 public:	
-	float balance; //кол-во денег
-
-	float all_price_order = 0; // сумма заказов покупателя (нужно для расчета скидки)
-
 	// Конструктор 
 	Customer(string name, string surname, string email, string phone, float balance) :
 		name{ name },
@@ -58,35 +54,21 @@ public:
 		last_idBasket = 0;
 		Basket* ptr_basket = new Basket;
 		//ptr_basket->quantity = 0;
-
-	
-		phone{ other.phone },
-		discount{ other.discount }
+		//ptr_basket->totalprice = 0;
+		ptr_basket->product = nullptr;
+		ptr_basket->idBasket = last_idBasket;
 	}
-	*/
-
 
 	
-	*/
-
-
-	~Customer();
-
-
-
-
 	// Геттеры
 	string getName() const { return name; }
 	string getSurname() const { return surname; }
 	string getEmail() const { return email; }
 	string getPhone() const { return phone; }
-<<<<<<<<< Temporary merge branch 1
-	DiscountType GetDiscount() { return discount; }
-=========
->>>>>>>>> Temporary merge branch 2
 
-	float getBalance() const { return balance; }
+	float getDiscount() { return discount; }
 
+	
 	// Сеттеры
 	void setName(string newName) { name = newName; }
 	void setSurname(string surname) { name = surname; }
