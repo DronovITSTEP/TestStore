@@ -8,26 +8,23 @@ using namespace std;
 
 class Storekeeper : public Employ
 {
-	WareHouse stock;
-	void Method(WareHouse& stock) {
-		_File file;
-		if (file.Open("Products.txt", "")) {
-			Product* products = file.GetProducts();
-			for (int i = 0; i < 10; i++) {
-				stock.AddProduct(products[i].name, products[i].price, products[i].count);
-			}
-			stock.PrintProduct();
-		}
-	}
+	_File f;
+	WareHouse w;
 public:
 
 	Storekeeper(string name, string lastname, string post, double payment) : Employ(name, lastname, post, payment) {
-		Method(stock);
+	f.Open("Products.txt");
+	vector<Product*> prod = f.GetProducts();
+	for (auto p : prod) {
+		//cout << p->name << " " << p->count  << " " << p->price << endl;
+		w.AddProduct(p->name, p->price, p->count);
+		w.AddProduct(p->name, p->price, p->count);
+	}
+	w.PrintProduct();
 	};
 	//Обращаение к складу на наличие товара
 	Product* GetProduct(string name, int num) {
-		return stock.GetProduct(name, num);
+		return w.GetProduct(name, num);
 	}
-
 };
 

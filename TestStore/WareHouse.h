@@ -1,127 +1,84 @@
 #pragma once
 #include <iostream>
 #include <iomanip>
+#include <vector>
+#include <algorithm>
 #include "Tovar.h"
 
 using namespace std;
 
-
-
 class WareHouse {
+	vector<Product*> addProducts;
+	vector<Product*> deleteProducts;
 
-	struct ListProducts {
-		Product* p;
-		ListProducts* next;
-	};
-
-	ListProducts* listProducts = nullptr;
-	ListProducts* delListProduct = nullptr;
 
 public:
 	Product* GetProduct(string name, int count) {
 
 		cout << "Получить со склада товар " << name << " в количестве "
 			<< count << endl;
+		Product* getProd = new Product();
 
-		ListProducts* getProduct = listProducts;
-		Product* returnProduct;
-
-		while (getProduct != nullptr && getProduct->p->name != name) {
-			getProduct = getProduct->next;
-		}
-
-		if (getProduct != nullptr && getProduct->p->name == name) {
-			if (getProduct->p->count > count)
+		vector<Product*>::iterator iter;
+		iter = find_if(addProducts.begin(), addProducts.end(), 
+			[name](Product* p){
+				return p->name == name; 
+			});
+		if (iter != addProducts.end())
+		{
+			if ((*iter)->count > count)
 			{
-				returnProduct = new Product(getProduct->p->name,
-					getProduct->p->price, count);
-				getProduct->p->count -= count;
+				getProd->count = count;
+				(*iter)->count -= count;
 			}
 			else
 			{
-				returnProduct = new Product(getProduct->p->name,
-					getProduct->p->price, getProduct->p->count);
-				getProduct->p->count = 0;
+				getProd->count = (*iter)->count;
+				(*iter)->count = 0;
+				DelProduct(name);
 			}
 
-			if (getProduct->p->count == 0) DelProduct(getProduct->p->name,
-				getProduct->p->price);
-
+			getProd->name = name;
+			return getProd;
 		}
-		else {
-			cout << "Товара " << name << " нет на складе " << endl;	
-			return nullptr;
-		}
+		throw runtime_error("Нет товара. " + name);
 	
 	}
 	
-	void AddProduct(string name, double price, int count) {
-		// Ищем товар с указанным именем в списке
-		ListProducts* newProduct = new ListProducts;
-		newProduct->p = new Product(name, price, count);
-		newProduct->next = nullptr;	
-		
-		if (listProducts == nullptr) {
-			listProducts = newProduct;
-			return;
-		}
+	void AddProduct(string name, float price, int count) {
+		vector<Product*>::iterator addIter = 
+			find_if(addProducts.begin(), addProducts.end(),
+				[name](Product* p) {return p->name == name; });
+		vector<Product*>::iterator delIter =
+			find_if(deleteProducts.begin(), deleteProducts.end(),
+				[name](Product* p) {return p->name == name; });
 
-		ListProducts* current = listProducts;
-		while (current != nullptr && current->next != nullptr) {
-			if (current->p->name == name) break;
-			current = current->next;
-		}
-		if (current->p->name == name) current->p->count += count;
-		else current->next = newProduct;
+		if (delIter != deleteProducts.end()) deleteProducts.erase(delIter);
+
+		if (addIter == addProducts.end())
+			addProducts.push_back(new Product{
+				name,
+				price,
+				count
+				});
+		else
+			(*addIter)->count += count;
 	}
 
-	void DelProduct(string name, int count) {
-		ListProducts* currentActiv = listProducts;
-		ListProducts* prevActiv = listProducts;
-		ListProducts* currentDel = delListProduct;
-
-		while (currentActiv->p->name != name)
-		{
-			prevActiv = currentActiv;
-			currentActiv = currentActiv->next;
-		}
-
-		if (currentDel == nullptr) {
-			prevActiv->next = currentActiv->next;
-			currentDel = currentActiv;
-			currentActiv->next = nullptr;
-		}
-		else {
-			while (currentDel->next != nullptr)
-			{
-				currentDel = currentDel->next;
-			}
-			prevActiv->next = currentActiv->next;
-			currentDel->next = currentActiv;
-			currentActiv->next = nullptr;
+	void DelProduct(string name) {
+		vector<Product*>::iterator iter =
+			find_if(addProducts.begin(), addProducts.end(),
+				[name](Product* p) {return p->name == name; });
+		if (iter != addProducts.end()) {
+			deleteProducts.push_back(*iter);
+			addProducts.erase(iter);
 		}
 	}
 	void PrintProduct() {
-		ListProducts* current = listProducts;
-		while (current != nullptr && current != delListProduct) {
-			cout << "Товар: " << current->p->name << " "
-				<< "Цена: " << fixed << setprecision(2) << current->p->price << "  "
-				<< "Количество: " << current->p->count << endl;
-			current = current->next;
-		}
-		cout << endl;
-		if (delListProduct != nullptr) {
-			ListProducts* missing = delListProduct;
-			cout << "Товары, отсутствующие на складе = >" << endl;
-			while (missing != nullptr) {
-				cout << "Товар: " << missing->p->name << " "
-					<< "Цена: " << fixed << setprecision(2) << missing->p->price << endl;
-				missing = missing->next;
-			}
-
-		}
-	}
-
-	
+		for (auto prod : addProducts)
+			cout << "Товар: " << prod->name << " "
+				<< "Цена: " << fixed << setprecision(2) << prod->price << "  "
+				<< "Количество: " << prod->count << endl;		
+	}	
 };
 

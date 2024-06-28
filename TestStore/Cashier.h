@@ -12,11 +12,12 @@ class Cashier : public Employ
 public:
 	Cashier(string name, string lastname, string post, double payment) : Employ(name, lastname, post, payment) {}
 	//подсчет общей стоимости всех вещей в корзине
-	float GetToatalPrice(Basket* basket, float discount) {
-		while (basket != nullptr) {
-			
-			TotalPrice += (basket->product->price * basket->product->count); //итоговая цена
-			basket = basket->next;
+	float GetTotalPrice(Basket* basket, float discount) {
+		if (basket != nullptr) {
+			for(auto p: basket->products)
+			{
+				TotalPrice += (p->price * p->count); //итоговая цена
+			}
 		}
 		return TotalPrice * (1 - discount / 100);
 	}

@@ -22,12 +22,16 @@ int main()
 	new Storekeeper("Sidr", "Sidorov", "Storekeeper", 36500),
 	new Cashier("Elena", "Elenova","Dou", 60000)
 	};
+	try {
+		customer.AddToBasket(empl[SELLER]->GetProduct("Meat", 2));
+		customer.AddToBasket(empl[SELLER]->GetProduct("Bread", 1));
+		customer.AddToBasket(empl[SELLER]->GetProduct("Orange", 4));
+	}
+	catch (exception e) {
+		cout << e.what();
+	}
 
-	customer.AddToBasket(empl[SELLER]->GetProduct("Meat", 2));
-	customer.AddToBasket(empl[SELLER]->GetProduct("Bread", 1));
-	customer.AddToBasket(empl[SELLER]->GetProduct("Orange", 4));
-
-	float totalPrice = (dynamic_cast<Cashier*>(empl[CASHIER]))->GetToatalPrice(customer.GetBusket(),
+	float totalPrice = (dynamic_cast<Cashier*>(empl[CASHIER]))->GetTotalPrice(customer.GetBusket(),
 		customer.getDiscount());
 	if ((dynamic_cast<Cashier*>(empl[CASHIER]))->Pay(customer.GetCash(totalPrice))) {
 		cout << "Ok";
